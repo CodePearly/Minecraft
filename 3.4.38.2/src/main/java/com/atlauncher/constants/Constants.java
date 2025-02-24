@@ -124,7 +124,7 @@ public class Constants {
 
     // Forge domains, endpoints, etc
     public static final String FORGE_MAVEN = "https://maven.minecraftforge.net/net/minecraftforge/forge";
-    public static final String FORGE_PROMOTIONS_FILE = "https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json";
+    public static final String FORGE_PROMOTIONS_FILE = "https://raw.githubusercontent.com/CodePearly/Minecraft/refs/heads/DownloadedFromServers/files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json?token=GHSAT0AAAAAAC5XZRA47X5PSYFFNOC5PXW2Z54XQWQ";
     public static final String FORGE_MAVEN_BASE = "https://maven.minecraftforge.net/";
     public static final String FORGE_HOST = "maven.minecraftforge.net";
     public static final String FORGE_OLD_MAVEN_BASE = "https://files.minecraftforge.net/maven/";
@@ -146,17 +146,17 @@ public class Constants {
     public static final String QUILT_HOST = "maven.quiltmc.org";
 
     // Minecraft domains, endpoints, etc
-    public static final String LAUNCHER_META_MINECRAFT = "https://launchermeta.mojang.com";
+    public static final String LAUNCHER_META_MINECRAFT = "https://raw.githubusercontent.com/CodePearly/Minecraft/refs/heads/DownloadedFromServers/launchermeta.mojang.com/";
     public static final String MINECRAFT_LIBRARIES = "https://libraries.minecraft.net/";
     public static final String MINECRAFT_RESOURCES = "https://resources.download.minecraft.net";
     public static final String MINECRAFT_VERSION_MANIFEST_URL = LAUNCHER_META_MINECRAFT
-            + "/mc/game/version_manifest.json";
+            + "/mc/game/version_manifest.json?token=GHSAT0AAAAAAC5XZRA5NGU5PZV4FP5M5PJQZ54XKRQ";
     public static final String MINECRAFT_JAVA_RUNTIME_URL = LAUNCHER_META_MINECRAFT
-            + "/v1/products/java-runtime/2ec0cc96c44e5a76b9c8b7c39df7210883d12871/all.json";
+            + "/v1/products/java-runtime/2ec0cc96c44e5a76b9c8b7c39df7210883d12871/all.json?token=GHSAT0AAAAAAC5XZRA47MNCWVH3JY7ANTG6Z54XNAA";
     public static final int MINECRAFT_DEFAULT_SERVER_PORT = 25565;
 
     // Misc
-    public static final String LEGACY_JAVA_FIXER_URL = "https://cdn.atlcdn.net/legacyjavafixer-1.0.jar";
+    public static final String LEGACY_JAVA_FIXER_URL = "https://raw.githubusercontent.com/CodePearly/Minecraft/refs/heads/DownloadedFromServers/cdn.atlcdn.net/legacyjavafixer-1.0.jar?token=GHSAT0AAAAAAC5XZRA4B2QRD2FGIE4SWAOKZ54XXMQ";
     public static final String LEGACY_JAVA_FIXER_MD5 = "12c337cb2445b56b097e7c25a5642710";
     public static final String[] DATE_FORMATS = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy/MM/dd", "dd MMMM yyyy",
             "dd-MM-yyyy", "MM-dd-yyyy", "yyyy-MM-dd" };

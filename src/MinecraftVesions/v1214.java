@@ -27,7 +27,7 @@ public class v1214 {
         btnNoMods.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new nomods(); // Instantiate and display the nomods class
-                
+                System.out.println("No mods Button clicked");
                 // Close the current frame
                 frmModOrNot.dispose();
             }

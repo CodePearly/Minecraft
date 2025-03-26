@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import java.awt.event.ActionListener;
+import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -26,11 +27,21 @@ public class nomods {
 
     public nomods() {
         // Create a new frame for the "No Mods" window
-        JFrame noModsFrame = new JFrame("No Mods Selected");
+        
+
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	JFrame noModsFrame = new JFrame("No Mods Selected");
         noModsFrame.setTitle("Download File - Minecraft v1.21.4");
         noModsFrame.setSize(400, 212);
         noModsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        
         // Add components
         JLabel lblMessage = new JLabel("Click the button to download the file:", JLabel.CENTER);
         JButton btnDownload = new JButton("Download");
@@ -76,8 +87,9 @@ public class nomods {
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             String saveDirectory = fileChooser.getSelectedFile().getAbsolutePath();
             String saveFilePath = saveDirectory + "/Vanilla.Minecraft.1.21.4.zip";
-            
+            System.out.println("Starting Download of Minecraft 1.21.4");
             downloadFile(saveFilePath);
+            
         } else {
             JOptionPane.showMessageDialog(null, "Download cancelled.", "Cancelled", JOptionPane.WARNING_MESSAGE);
         }
@@ -85,6 +97,16 @@ public class nomods {
 
     // Method to download a file from a URL
     private void downloadFile(String saveFilePath) {
+    	JFrame framedownload = new JFrame("downloading...");
+        framedownload.setResizable(false);
+        framedownload.setType(Type.UTILITY);
+        framedownload.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        framedownload.setSize(10, 0);
+
+        // Ensure the frame stays on top
+        framedownload.setAlwaysOnTop(true);
+        framedownload.setVisible(true);
+        
         String fileURL = "https://github.com/CodePearly/Minecraft/archive/refs/heads/Vanilla.Minecraft.1.21.4.zip";
         
         try (BufferedInputStream in = new BufferedInputStream(new URL(fileURL).openStream());
@@ -94,17 +116,20 @@ public class nomods {
             while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
             }
-            
-            JOptionPane.showMessageDialog(null, "File downloaded successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            
+            framedownload.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Minecraft 1.21.4 downloaded successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Minecraft 1.21.4 downloaded successfully!");
             saveFilePathToFile(saveFilePath); // Save the file path to a text file
             // Read the file path from the text file
             String zipFilePath = readZipFilePath(); 
             if (zipFilePath != null) {
+            	System.out.println("Extracting the zip file that was downloaded");
                 extractZipFile(zipFilePath); // Extract the ZIP file using the path from the text file
             }
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while downloading the file.", "Error", JOptionPane.ERROR_MESSAGE);
+        	framedownload.setVisible(false);
+            JOptionPane.showMessageDialog(null, "An error occurred while downloading Minecraft.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("An error occurred while downloading Minecraft.");
             e.printStackTrace();
         }
     }
@@ -115,7 +140,9 @@ public class nomods {
             String directoryPath = saveFilePath.substring(0, saveFilePath.lastIndexOf('/'));
             out.println(directoryPath);
             out.println(saveFilePath);
+            System.out.println("Saving the path to the zip file in download_path.txt");
         } catch (IOException e) {
+        	System.out.println("An error occurred while saving the file path.");
             JOptionPane.showMessageDialog(null, "An error occurred while saving the file path.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
@@ -128,11 +155,13 @@ public class nomods {
             if (lines.size() >= 2) {
                 return lines.get(1);
             } else {
+            	System.out.println("The file path could not be read from the text file.");
                 JOptionPane.showMessageDialog(null, "The file path could not be read from the text file.", "Error", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while reading the file path.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("An error occurred while reading the file path.");
             e.printStackTrace();
             return null;
         }
@@ -140,6 +169,19 @@ public class nomods {
 
     // Method to extract the ZIP file
     private void extractZipFile(String zipFilePath) {
+    	
+    	JFrame framedownload = new JFrame("extracting...");
+        framedownload.setResizable(false);
+        framedownload.setType(Type.UTILITY);
+        framedownload.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        framedownload.setSize(10, 0);
+
+        // Ensure the frame stays on top
+        framedownload.setAlwaysOnTop(true);
+        framedownload.setVisible(true);
+    	
+    	
+    	
         String destDirectory = zipFilePath.substring(0, zipFilePath.lastIndexOf('/'));
         File destDir = new File(destDirectory);
         if (!destDir.exists()) {
@@ -160,11 +202,15 @@ public class nomods {
                 entry = zipIn.getNextEntry();
             }
             // Show success message after extraction
+            framedownload.setVisible(false);
+            System.out.println("Successfully extracted zip");
             JOptionPane.showMessageDialog(null, "Successfully extracted zip", "Success", JOptionPane.INFORMATION_MESSAGE);
             // Delete the ZIP file after extraction
             deleteZipFile(zipFilePath);
         } catch (IOException e) {
+        	framedownload.setVisible(false);
             JOptionPane.showMessageDialog(null, "An error occurred while extracting the ZIP file.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("An error occurred while extracting the ZIP file.");
             e.printStackTrace();
         }
     }
@@ -184,9 +230,11 @@ public class nomods {
     private void deleteZipFile(String zipFilePath) {
         File zipFile = new File(zipFilePath);
         if (zipFile.delete()) {
-            JOptionPane.showMessageDialog(null, "ZIP file deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        	System.out.println("ZIP file deleted successfully!");
+        	JOptionPane.showMessageDialog(null, "ZIP file deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Failed to delete the ZIP file.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Failed to delete the ZIP file.");
         }
     }
 

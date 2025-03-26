@@ -22,6 +22,7 @@ public class MinecraftVersion {
                 
                 button.addActionListener(e -> {
                     // Open the v1214 class window
+                	System.out.println("Opening Mod/Vanilla Minecraft 1.21.4 Choser");
                     new v1214(); // Instantiate and display the v1214 class
 
                     // Close the current frame
